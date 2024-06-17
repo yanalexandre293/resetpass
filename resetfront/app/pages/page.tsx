@@ -21,8 +21,13 @@ export default function Reset() {
     });
 
     const data = await response.json();
-    console.log("", data);
-    router.push("/pages/resetpass");
+
+    if(data){
+      alert('Email enviado com sucesso!');
+      router.push("/");
+    }else{
+      alert('Erro ao enviar email!');
+    }
   }
 
 
@@ -78,7 +83,7 @@ export default function Reset() {
               type="button"
               onClick={handleReset}
             >
-              Sign In
+              Enviar email de redefinição
             </button>
           </div>
         </form>

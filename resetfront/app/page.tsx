@@ -22,8 +22,32 @@ export default function Home() {
       localStorage.setItem("token", data.token);
       alert('Login successful!');
       router.push("/pages/");
+    }else{
+      alert('Login failed!');
     }
   }
+
+  
+  const handleCadastrar = async () => {
+    const response = await fetch("http://localhost:3003/users/create",{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ login, password })
+    });
+
+    const data = await response.json();
+    if(data.token){
+      localStorage.setItem("token", data.token);
+      alert('Usuário criado com sucesso!');
+      router.push("/");
+    }else{
+      alert('Erro ao criar usuário!');
+    }
+  }
+
+
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -62,7 +86,15 @@ export default function Home() {
                             type="button"
                             onClick={handleLogin}
                         >
-                            Sign In
+                            Logar
+                        </button>
+
+                        <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button"
+                            onClick={handleCadastrar}
+                        >
+                            Cadastrar
                         </button>
                     </div>
                 </form>

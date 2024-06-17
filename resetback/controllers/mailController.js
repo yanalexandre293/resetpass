@@ -19,7 +19,7 @@ class MailController{
 
         try {
             const info = await transporter.sendMail({
-                from: '"Yan Alexandre" <yanalexandre293@gmail.com>', // sender address
+                from: '"Ola" <ola@gmail.com>', // sender address
                 to: email, // list of receivers
                 subject: "Hello ✔", // Subject line
                 text: "Hello world?", // plain text body
@@ -27,8 +27,10 @@ class MailController{
             });
             console.log("Message sent: %s", info.messageId);
             console.log('Email enviado com sucesso!');
+            res.status(200).json({ message: 'Email enviado com sucesso!' });
         } catch (error) {
             console.error('Erro ao enviar o email:', error);
+            res.status(500).json({ error: 'Erro ao enviar o email' });
             throw error;
         }
     }

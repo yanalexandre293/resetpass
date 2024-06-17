@@ -31,7 +31,7 @@ export default function UpdateUser() {
       if (response.ok) {
         console.log("User updated successfully:", data);
         alert("User updated successfully");
-        router.push("/somepage"); // Redirect to another page if necessary
+        router.push("/"); // Redirect to another page if necessary
       } else {
         console.error("Failed to update user:", data);
         alert("Failed to update user: " + data.error);
